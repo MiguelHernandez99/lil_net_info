@@ -27,9 +27,22 @@ check_internet() {
 #2. Mostar IPs
 show_ips() {
 	clear_screen
-	echo "Obeteniendo IPs"	
-	read -p "Presiona Enter para continuar"
+	echo "Obteniendo direcciones IP"
+	echo "-------------------------------------"
 
+	#IP privada con "ip"
+	echo "Interfaces - IP local"
+	ip -br addr show | grep -v "127.0.0.1"
+	echo "-------------------------------------"
+	#IP publica api externa 
+	echo "IP publica"
+	ip_publica=$(curl -s https://ifconfig.me)
+	if [ -n "$ip_publica"]; then
+		echo "IP publica: $ip_publica"
+	else
+		echo "No se pudo obtener!"
+	fi
+	read -p "Presiona Enter para continuar"
 }
 #3.Escanear puertos locales abiertos
 check_ports() {
