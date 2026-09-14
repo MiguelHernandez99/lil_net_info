@@ -10,8 +10,19 @@ clear_screen() {
 check_internet() {
 	clear_screen
 	echo "Verificando conexion a internet"
+	#Ping al dns de google con 3 paquetes
+	if ping -c 3 8.8.8.8 &> /dev/null; then
+		echo "Conexion IP activa: ping 8.8.8.8 Exitoso"
+		#Resolucion de nombres dns
+		if ping -c 2 google.com &> /dev/null; then
+			echo "Resolucion DNS correcta"
+		else 
+			echo "Hay IP pero no Resolucion DNS"
+		fi
+	else
+		echo "Sin Internet"
+	fi
 	read -p "Presiona Enter para continuar"
-
 }
 #2. Mostar IPs
 show_ips() {
