@@ -37,7 +37,7 @@ show_ips() {
 	#IP publica api externa 
 	echo "IP publica"
 	ip_publica=$(curl -s https://ifconfig.me)
-	if [ -n "$ip_publica"]; then
+	if [ -n "$ip_publica" ]; then
 		echo "IP publica: $ip_publica"
 	else
 		echo "No se pudo obtener!"
@@ -48,8 +48,11 @@ show_ips() {
 check_ports() {
 	clear_screen
 	echo "Escaneando puertos locales activos"
-	read -p "Presiona Enter para continuar"
-}
+	echo "-------------------------------------"
+
+	#ss -tulpn: t=TCP, u=UDP, l=Listening, p=Procesos, n=Numérico
+	ss -tulpn | grep -v "IdNet"
+	read -p "Presiona Enter para continuar"}
 
 #Bucle para menu
 while true; do
