@@ -51,8 +51,9 @@ check_ports() {
 	echo "-------------------------------------"
 
 	#ss -tulpn: t=TCP, u=UDP, l=Listening, p=Procesos, n=Numérico
-	ss -tulpn | grep -v "IdNet"
-	read -p "Presiona Enter para continuar"}
+	ss -tulpn | grep -v "NetId"
+	read -p "Presiona Enter para continuar"
+}
 
 #Bucle para menu
 while true; do
@@ -71,4 +72,3 @@ while true; do
 		*) echo "Opcion no valida" ;;
 	esac
 done
-
